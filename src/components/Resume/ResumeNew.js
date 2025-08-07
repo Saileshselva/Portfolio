@@ -25,7 +25,7 @@ function ResumeNew() {
     <div>
       <Container fluid className="resume-section">
         <Particle />
-        
+
         <Row style={{ justifyContent: "center", position: "relative" }}>
           <Button
             variant="primary"
@@ -38,18 +38,28 @@ function ResumeNew() {
           </Button>
         </Row>
 
-        <Row className="resume">
+        <Row className="resume d-flex flex-column align-items-center">
           <Document
             file={pdf}
             onLoadSuccess={onDocumentLoadSuccess}
-            className="d-flex justify-content-center flex-column align-items-center"
+            className="d-flex flex-column align-items-center"
           >
             {Array.from(new Array(numPages), (el, index) => (
-              <Page
-                key={`page_${index + 1}`}
-                pageNumber={index + 1}
-                scale={width > 786 ? 1.7 : 0.6}
-              />
+              <div
+                key={`page_wrapper_${index + 1}`}
+                style={{
+                  margin: "20px 0",
+                  padding: "20px",
+                  backgroundColor: "#fff",
+                  boxShadow: "0 0 10px rgba(0,0,0,0.15)",
+                  borderRadius: "8px",
+                }}
+              >
+                <Page
+                  pageNumber={index + 1}
+                  scale={width > 786 ? 1.5 : 0.6}
+                />
+              </div>
             ))}
           </Document>
         </Row>
